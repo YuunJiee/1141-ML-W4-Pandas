@@ -49,7 +49,7 @@ def filter_and_analyze_data(df):
     summary = df.describe()
 
     # TODO 4.2: 找出總分最高的學生
-    top_student = df.loc[df["總分"].idxmax()]
+    top_student = df[df["總分"] == df["總分"].max()]
 
     # 回傳 dict，方便 pytest 檢查每個任務
     return {
