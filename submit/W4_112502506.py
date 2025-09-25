@@ -26,13 +26,13 @@ def feature_engineering(df):
     """任務二：計算總分、平均分數與是否及格"""
     
     # TODO 2.1: 計算總分
-    df['總分'] = df['數學'] + df['英文'] + df['國文'] + df['自然'] + df['社會']
+    df["總分"] = df[["國文", "英文", "數學", "自然", "社會"]].sum(axis=1)
 
     # TODO 2.2: 計算平均分數
-    df['平均分數'] = df['總分'] / 5
+    df['平均'] = df['總分'] / 5
 
     # TODO 2.3: 新增是否及格欄位（平均 >= 60 為及格）
-    df['是否及格'] = df['總分'] >= 60
+    df['是否及格'] = df['平均'] >= 60
 
     return df 
 
@@ -49,7 +49,7 @@ def filter_and_analyze_data(df):
     summary = df.describe()
 
     # TODO 4.2: 找出總分最高的學生
-    top_student = df[df['總分'] == df['總分'].max()]
+    top_student = df.loc[df["總分"].idxmax()]
 
     # 回傳 dict，方便 pytest 檢查每個任務
     return {
