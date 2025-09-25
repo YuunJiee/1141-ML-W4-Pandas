@@ -12,7 +12,6 @@ def load_and_explore_data(file_path):
     print(df.head(5))
     # TODO 1.2: 查看資料結構（欄位、型態、缺失值）
     df.info()
-    print(df.isnull().sum())
     return df
 
 def feature_engineering(df):
