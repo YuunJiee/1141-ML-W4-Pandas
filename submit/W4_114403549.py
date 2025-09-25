@@ -28,11 +28,11 @@ def feature_engineering(df):
 
     # TODO 2.2: 計算平均分數
     
-    df["平均"] = df[["數學", "英文"]].mean(axis=1)
+    df["平均"] = df[["數學", "英文", "國文", "自然", "社會"]].mean(axis=1)
 
     # TODO 2.3: 新增是否及格欄位（平均 >= 60 為及格）
     
-    df["及格"] = df[["數學", "英文"]].mean(axis=1) >= 60
+    df["及格"] = df[["數學", "英文", "國文", "自然", "社會"]].mean(axis=1) >= 60
 
     return df 
 
