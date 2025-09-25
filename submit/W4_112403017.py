@@ -22,13 +22,16 @@ def feature_engineering(df):
     """任務二：計算總分、平均分數與是否及格"""
     
     # TODO 2.1: 計算總分
-    
+    df['總分'] = df[['數學', '英文', '國文','自然','社會']].sum(axis=1)
+    print(df['總分'])
 
     # TODO 2.2: 計算平均分數
-    
+    df["平均"] = df[["數學", "英文", "國文",'自然','社會']].mean(axis=1)
+    print(df["平均"])
 
     # TODO 2.3: 新增是否及格欄位（平均 >= 60 為及格）
-    
+    df["是否及格"]=df["平均"]>=60
+    print(df["是否及格"])
 
     return df 
 
@@ -36,16 +39,20 @@ def filter_and_analyze_data(df):
     """任務三與四：篩選資料與統計"""
     
     # TODO 3.1: 找出數學成績 < 60 的學生
-    math_failed = None
+    math_failed=df[df["數學"]<60]
+    print(math_failed)
 
     # TODO 3.2: 找出班級為 'A' 且英文 > 90 的學生
-    high_A = None
+    high_A = df[(df["班級"]=="A") & (df["英文"]>90)]
+    print(high_A)
 
     # TODO 4.1: 統計摘要
-    summary = None
+    summary = df.describe()
+    print(summary)
 
     # TODO 4.2: 找出總分最高的學生
-    top_student = None
+    top_student = df.loc[df['總分'].idxmax()]
+    print(top_student)
 
     # 回傳 dict，方便 pytest 檢查每個任務
     return {
@@ -61,6 +68,7 @@ def save_results(df, output_file_path):
     
     # TODO 5.1: 儲存 CSV，避免中文亂碼
     # Hint: df.to_csv(...)
+    df.to_csv(output_file_path, index=False, encoding='utf-8-sig')
 
 if __name__ == "__main__":
     INPUT_CSV = "grades.csv"
