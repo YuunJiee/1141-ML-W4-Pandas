@@ -56,6 +56,6 @@ if __name__ == "__main__":
     df = load_and_explore_data(INPUT_CSV)
     df = feature_engineering(df)
     result = filter_and_analyze_data(df)
-    save_results(df, OUTPUT_CSV)
+    save_results(result["processed_df"], OUTPUT_CSV)
 
     print("完成所有分析任務")
