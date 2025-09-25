@@ -1,5 +1,4 @@
 import pandas as pd
-import argparse
 
 def load_and_explore_data(file_path):
     """任務一：讀取 CSV 並初步探索資料"""
@@ -31,6 +30,9 @@ def feature_engineering(df):
     # 新增是否及格欄位（平均 >= 60 為及格）
     df['是否及格'] = df['平均分數'] >= 60
 
+    # 新增「平均」欄位
+    df['平均'] = df['平均分數']  # 修正欄位名稱為「平均」
+
     return df
 
 def filter_and_analyze_data(df):
@@ -47,7 +49,7 @@ def filter_and_analyze_data(df):
     summary = df[score_columns].describe()
 
     # 找出總分最高的學生
-    top_student = df.loc[df['總分'].idxmax()]  # 只返回最高分的那一行資料
+    top_student = df.loc[df['總分'].idxmax():]  # 返回包含最高總分的完整資料
 
     # 回傳 dict，方便 pytest 檢查每個任務
     return {
@@ -65,22 +67,15 @@ def save_results(df, output_file_path):
     except IOError as e:
         print(f"寫入檔案時發生錯誤: {e}")
 
-def main():
-    # 使用 argparse 來處理檔案路徑的輸入
-    parser = argparse.ArgumentParser(description="學生期中成績分析")
-    parser.add_argument('input_csv', help="輸入的 CSV 檔案路徑")
-    parser.add_argument('output_csv', help="輸出的 CSV 檔案路徑")
+if __name__ == "__main__":
+    # 使用相對路徑或更具彈性的方式設定檔案路徑
+    INPUT_CSV = "grades.csv"
+    OUTPUT_CSV = "grades_analyzed.csv"
 
-    args = parser.parse_args()
-
-    # 讀取資料
-    df = load_and_explore_data(args.input_csv)
+    df = load_and_explore_data(INPUT_CSV)
     if df is not None:
         df = feature_engineering(df)
         result = filter_and_analyze_data(df)
-        save_results(result["processed_df"], args.output_csv)
+        save_results(result["processed_df"], OUTPUT_CSV)
 
         print("完成所有分析任務")
-
-if __name__ == "__main__":
-    main()
