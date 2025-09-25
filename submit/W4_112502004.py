@@ -12,36 +12,29 @@ def load_and_explore_data(file_path):
     print(df.head(5))
     # TODO 1.2: 查看資料結構（欄位、型態、缺失值）
     df.info()
-    df.isnull().sum()
+    print(df.isnull().sum())
     return df
 
 def feature_engineering(df):
     """任務二：計算總分、平均分數與是否及格"""
     # TODO 2.1: 計算總分
     df['總分']=df[['數學','英文','國文','自然','社會']].sum(axis=1)
-    print(df[['姓名','總分']])
     # TODO 2.2: 計算平均分數
     df['平均分數']=df[['數學','英文','國文','自然','社會']].mean(axis=1)
-    print(df[['姓名','平均分數']])
     # TODO 2.3: 新增是否及格欄位（平均 >= 60 為及格）
     df['是否及格']=df['平均分數']>=60
-    print(df[['總分', '平均分數', '是否及格']])
     return df 
 
 def filter_and_analyze_data(df):
     """任務三與四：篩選資料與統計"""
     # TODO 3.1: 找出數學成績 < 60 的學生
     math_failed = df[df['數學'] < 60][['姓名', '數學']]
-    print(math_failed)
     # TODO 3.2: 找出班級為 'A' 且英文 > 90 的學生
     high_A = df[(df['英文'] > 90) & (df['班級']=='A')][['姓名', '英文']]
-    print(high_A )
     # TODO 4.1: 統計摘要
     summary = df.describe()
-    print(summary)
     # TODO 4.2: 找出總分最高的學生
     top_student = df[df['總分']==df['總分'].max()][['姓名', '總分']]
-    print(top_student)
     # 回傳 dict，方便 pytest 檢查每個任務
     return {
         "processed_df": df,
