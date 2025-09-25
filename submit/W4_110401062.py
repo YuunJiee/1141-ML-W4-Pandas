@@ -63,7 +63,7 @@ def save_results(df, output_file_path):
     # Hint: df.to_csv(...)
     df.to_csv(output_file_path, encoding='utf-8-sig', index=False)
 if __name__ == "__main__":
-    INPUT_CSV = "/content/sample_data/grades.csv"
+    INPUT_CSV = "/workspaces/W4_-110401062-.py/submit/grades.csv"
     OUTPUT_CSV = "grades_analyzed.csv"
 
     df = load_and_explore_data(INPUT_CSV)
