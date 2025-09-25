@@ -46,7 +46,7 @@ def filter_and_analyze_data(df):
     high_A = df[(df["班級"] == "A") & (df["英文"] > 90)]
 
     # TODO 4.1: 統計摘要
-    summary = df.describe
+    summary = df.describe()
 
     # TODO 4.2: 找出總分最高的學生
     top_student = df.loc[[df["總分"].idxmax()]]
