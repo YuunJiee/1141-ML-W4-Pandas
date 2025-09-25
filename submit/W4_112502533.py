@@ -14,7 +14,6 @@ def load_and_explore_data(file_path):
 
     # TODO 1.2: 查看資料結構（欄位、型態、缺失值）
     print(df.info())
-    print(df.isnull().sum())
 
     return df
 
@@ -30,7 +29,6 @@ def feature_engineering(df):
     # TODO 2.3: 新增是否及格欄位（平均 >= 60 為及格）
     df['是否及格'] = df['平均'] >= 60
     
-    print(df.head(5))
     return df 
 
 def filter_and_analyze_data(df):
@@ -45,11 +43,9 @@ def filter_and_analyze_data(df):
 
     # TODO 4.1: 統計摘要
     summary = df.describe()
-    print(summary)
 
     # TODO 4.2: 找出總分最高的學生
     top_student = df.loc[df['總分'].idxmax()]
-    print(top_student)
 
     # 回傳 dict，方便 pytest 檢查每個任務
     return {
