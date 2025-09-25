@@ -45,8 +45,9 @@ def filter_and_analyze_data(df):
     summary = df.describe()
 
     # TODO 4.2: 找出總分最高的學生
-    top_student_index = df['總分'].idxmax()
-
+    max_score=df["總分"].max()
+    top_student=df[df["總分"]==max_score]
+    top_student[["姓名","總分"]]
 
     # 回傳 dict，方便 pytest 檢查每個任務
     return {
@@ -54,7 +55,7 @@ def filter_and_analyze_data(df):
         "math_failed": math_failed,
         "high_A": high_A,
         "summary": summary,
-        "top_student": top_student_index
+        "top_student": top_student
     }
 
 def save_results(df, output_file_path):
