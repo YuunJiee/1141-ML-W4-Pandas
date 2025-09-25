@@ -14,7 +14,6 @@ def load_and_explore_data(file_path):
 
     # TODO 1.2: 查看資料結構（欄位、型態、缺失值）
     print(df.info())
-    print(df.isnull().sum)
     
     return df
 
