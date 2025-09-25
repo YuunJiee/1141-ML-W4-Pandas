@@ -17,9 +17,10 @@ def load_and_explore_data(file_path):
 def feature_engineering(df):
     """任務二：計算總分、平均分數與是否及格"""
     # TODO 2.1: 計算總分
-    df['總分']=df[['數學','英文','國文','自然','社會']].sum(axis=1)
+    df_subject=df[['數學','英文','國文','自然','社會']]
+    df['總分']=df_subject.sum(axis=1)
     # TODO 2.2: 計算平均分數
-    df['平均分數']=df[['數學','英文','國文','自然','社會']].mean(axis=1)
+    df['平均分數']=df_subject.mean(axis=1)
     # TODO 2.3: 新增是否及格欄位（平均 >= 60 為及格）
     df['是否及格']=df['平均分數']>=60
     return df 
@@ -47,7 +48,6 @@ def save_results(df, output_file_path):
     """任務五：儲存為 CSV"""
     
     # TODO 5.1: 儲存 CSV，避免中文亂碼
-    # Hint: df.to_csv(...)
     df.to_csv(output_file_path, encoding='utf-8-sig', index=False)
 
 if __name__ == "__main__":
