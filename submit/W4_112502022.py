@@ -41,11 +41,11 @@ def filter_and_analyze_data(df):
     high_A = df[(df['英文'] > 90) & (df['班級'] == 'A')]
     
     # TODO 4.1: 統計摘要
-    summary = df.describe(include='all')
+    summary = df.describe()
 
     # TODO 4.2: 找出總分最高的學生
-    top_student = df.loc[df['總分'].idxmax(), ['姓名', '總分']]
-
+    top_student = df[df['總分'] == df['總分'].max()]
+    print(top_student)
     # 回傳 dict，方便 pytest 檢查每個任務
     return {
         "processed_df": df,
