@@ -42,7 +42,7 @@ def filter_and_analyze_data(df):
     high_A = df[(df['班級'] == 'A') & (df['英文'] > 90)]
 
     # TODO 4.1: 統計摘要
-    summary = df[['數學', '英文', '國文', '自然', '社會', '及格']].describe()
+    summary = df[['數學', '英文', '國文', '自然', '社會', '是否及格']].describe()
 
     # TODO 4.2: 找出總分最高的學生
     top_student = df[df['總分'] == df['總分'].max()]
