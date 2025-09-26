@@ -57,5 +57,4 @@ if __name__ == "__main__":
     df = feature_engineering(df)
     result = filter_and_analyze_data(df)
     save_results(result["processed_df"], OUTPUT_CSV)
-
     print("完成所有分析任務")
