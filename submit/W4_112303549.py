@@ -28,7 +28,6 @@ def feature_engineering(df):
 
     # TODO 2.3: 新增是否及格欄位（平均 >= 60 為及格）
     df['是否及格'] = df['平均'].apply(lambda x:'是' if x >= 60 else '否')
-    
     return df 
 
 def filter_and_analyze_data(df):
