@@ -27,7 +27,7 @@ def feature_engineering(df):
     df['平均'] = df['總分'] / 5
 
     # TODO 2.3: 新增是否及格欄位（平均 >= 60 為及格）
-    df['是否及格'] = df['平均'].apply(lambda x:'及格' if x >= 60 else '不及格')
+    df['是否及格'] = df['平均'].apply(lambda x:'是' if x >= 60 else '否')
     
     return df 
 
@@ -35,12 +35,10 @@ def filter_and_analyze_data(df):
     """任務三與四：篩選資料與統計"""
 
     # TODO 3.1: 找出數學成績 < 60 的學生
-    math_failed = df[['姓名','數學']]
-    math_failed[math_failed['數學'] < 60][['姓名','數學']]
+    math_failed = df[df['數學'] < 60]
     
     # TODO 3.2: 找出班級為 'A' 且英文 > 90 的學生
-    high_A = df[['姓名','班級','英文']]
-    high_A[(high_A['英文'] > 90 ) & (high_A['班級'] ==  'A')][['姓名','班級','英文']]
+    high_A = df[df['班級'] == 'A' & df['英文'] > 90]
     # TODO 4.1: 統計摘要
     summary = df.describe()
 
