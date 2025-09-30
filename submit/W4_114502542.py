@@ -47,7 +47,6 @@ def filter_and_analyze_data(df):
     # TODO 4.2: 找出總分最高的學生
     max_score = df['總分'].max()
     top_student = df[df['總分'] == max_score]
-    top_student[["姓名","總分"]]
 
 
     # 回傳 dict，方便 pytest 檢查每個任務
@@ -63,7 +62,7 @@ def save_results(df, output_file_path):
     """任務五：儲存為 CSV"""
 
     # TODO 5.1: 儲存 CSV，避免中文亂碼
-    df.to_csv(output_file_path,encoding="utf-8-sig",index=True)
+    df.to_csv(output_file_path,encoding="utf-8-sig")
 
 if __name__ == "__main__":
     INPUT_CSV = "grades.csv"
