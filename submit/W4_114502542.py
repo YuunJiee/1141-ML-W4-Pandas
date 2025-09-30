@@ -40,8 +40,8 @@ def filter_and_analyze_data(df):
     math_failed[math_failed["數學"] < 60]
 
     # TODO 3.2: 找出班級為 'A' 且英文 > 90 的學生
-    high_A = df[['姓名',"班級","數學"]]
-    high_A[(high_A["班級"] == "A") & (high_A["數學"] > 90)]
+    high_A = df[['姓名',"班級","英文"]]
+    high_A[(high_A["班級"] == "A") & (high_A["英文"] > 90)]
 
     # TODO 4.1: 統計摘要
     summary = df.describe()
